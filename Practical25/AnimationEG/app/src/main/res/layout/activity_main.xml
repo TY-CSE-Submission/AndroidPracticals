@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="117dp"
+        android:layout_height="121dp"
+        android:layout_marginTop="128dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/btn_star_big_on" />
+
+    <Button
+        android:id="@+id/rclockwise"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="rotate clockwise"
+        app:layout_constraintBottom_toTopOf="@+id/fadein"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/anticlockwise"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="anti clockwise"
+        app:layout_constraintBottom_toTopOf="@+id/fadeout"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/fadein"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fade In"
+        app:layout_constraintBottom_toTopOf="@+id/zoomin"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/fadeout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fade Out"
+        app:layout_constraintBottom_toTopOf="@+id/zoomout"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/zoomin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Zoom IN"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/zoomout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Zoom Out"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
