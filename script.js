@@ -34,40 +34,46 @@ var walk = function (dir, done) {
   });
 };
 
+const callWalk = () => {
+  walk(directoryPath, function (err, results) {
+    if (err) throw err;
+    let relativePaths = [];
+    results = results.filter((val, idx) => {
+      let [name, ext] = val.split(".");
+      if (ext === "pdf") {
+        console.log(path.relative("./", val));
+        let relativePath = path.relative("./", val);
+        relativePaths.push(relativePath);
+        return true;
+      }
+      return false;
+    });
+    relativePaths = relativePaths.filter(
+      (val) => val.indexOf("node_modules") !== 0
+    );
+    //   console.log(results);
+    relativePaths.forEach((val, idx) => {
+      let p = "./" + val;
+      p.replace(/^.*\\\\.*$/i, "/");
+      relativePaths[idx] = p;
+      merger.add(p);
+    });
+    console.log(relativePaths);
+    (async () => {
+      await merger.save("merged.pdf"); //save under given name and reset the internal document
+    })();
+  });
+};
+
 if (fs.existsSync("merged.pdf")) {
   fs.unlink("merged.pdf", (err) => {
     if (err) {
       console.error("Unable to delete Merged.pdf file");
     } else {
       console.log("Deleted Merged.pdf file before merging");
-      walk(directoryPath, function (err, results) {
-        if (err) throw err;
-        let relativePaths = [];
-        results = results.filter((val, idx) => {
-          let [name, ext] = val.split(".");
-          if (ext === "pdf") {
-            console.log(path.relative("./", val));
-            let relativePath = path.relative("./", val);
-            relativePaths.push(relativePath);
-            return true;
-          }
-          return false;
-        });
-        relativePaths = relativePaths.filter(
-          (val) => val.indexOf("node_modules") !== 0
-        );
-        //   console.log(results);
-        relativePaths.forEach((val, idx) => {
-          let p = "./" + val;
-          p.replace(/^.*\\\\.*$/i, "/");
-          relativePaths[idx] = p;
-          merger.add(p);
-        });
-        console.log(relativePaths);
-        (async () => {
-          await merger.save("merged.pdf"); //save under given name and reset the internal document
-        })();
-      });
+      callWalk();
     }
   });
+} else {
+  callWalk();
 }
