@@ -8,5 +8,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
-      - name: Merged PDF
+      - name: Install Dependencies
+        run: npm install
+      - name: Merge PDF
         run: node script.js
