@@ -12,3 +12,8 @@ jobs:
         run: npm install
       - name: Merge PDF
         run: node script.js
+      - name: Add File
+        run: |
+          git add .
+          git commit -m "merged pdf"
+          git push
